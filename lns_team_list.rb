@@ -13,3 +13,7 @@ end
 
 puts teams
 
+teams.each do |team|
+  agent.get('http://lns-lol.com/Team/#{team.value}')
+end
+
