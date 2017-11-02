@@ -1,0 +1,2 @@
+class TeamUrl < ApplicationRecord
+end
