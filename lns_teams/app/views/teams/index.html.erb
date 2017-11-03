@@ -1,1 +1,5 @@
-hello
+  <h2>LNS Team 一覧<h2>
+<%= form_tag('/teams/members',method: :get) do %>
+  <%= collection_select(:team,:id,@teams,:id,:teamname) %>
+  <%= submit_tag "検索" %>
+<% end %>
