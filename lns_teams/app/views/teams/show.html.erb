@@ -1,6 +1,12 @@
 <h2>Team Members</h2>
 <ul>
-<% @members.each do |mem| %>
-    <li><%= mem.sumoner_name %></li>
-<% end %>
+  <% @members.each do |mem| %>
+    <% champs = get_summoner_params(mem.sumoner_name) %>
+    <li>
+      <%= mem.sumoner_name %>
+      <% champs.each do |champ| %>
+        <%= champ %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
