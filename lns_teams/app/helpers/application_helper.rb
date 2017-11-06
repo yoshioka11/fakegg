@@ -14,11 +14,8 @@ module ApplicationHelper
     sum_champ = open(sum_champ)
     sum_champ = JSON.parse(sum_champ.read)
     sum_champ.each.with_index(0) do |champ, i|
-      champ_name = "#{RIOTAPI_CONFIG["apiurl"]["champ_name"]}#{champ["championId"]}?locale=ja_JP&api_key=#{RIOTAPI_CONFIG[Rails.env]["apikey"]}"
-      champ_name = URI.escape(champ_name)
-      champ_name = open(champ_name)
-      champ_name = JSON.parse(champ_name.read)
-      most_champs << champ_name["name"]
+      champion = Champion.where(champion_id: champ["championId"])
+      most_champs << champion[0][:champion]
       break if i == 2
     end
     most_champs

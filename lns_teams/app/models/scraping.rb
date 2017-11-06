@@ -1,3 +1,4 @@
+require "open-uri"
 class Scraping
   def self.team_data
     puts 'get team names'
@@ -53,6 +54,18 @@ class Scraping
       unless i == 1
         puts nam
       end
+    end
+  end
+
+  def self.get_champion
+    puts 'get champions'
+    champions = "https://jp1.api.riotgames.com/lol/static-data/v3/champions?locale=ja_JP&dataById=false&api_key=RGAPI-3768bb6b-d3a1-47cf-985a-a61dee379453"
+    champions = URI.escape(champions)
+    champions = open(champions)
+    champions = JSON.parse(champions.read)
+    champions = champions["data"]
+    champions.each do |key,value|
+      Champion.create(champion: value["name"],champion_id: value["id"])
     end
   end
 end
